@@ -1,9 +1,29 @@
 #include <stdio.h>
 #include <stdlib.h>
 //尝试用LOOK算法解决问题
+int temp,i,j,x,y;
+int arrange(int up[][2], int x, int y)
+{
+    for(i = 0; i < y; i++)
+    {
+        for(j = y-1; j > i; j--)
+        {
+            if(up[j][x] > up[j-1][x])
+            {
+                temp = up[j][x];
+                up[j][x] = up[j-1][x];
+                up[j-1][x] = temp;     
+            }
+        }
+    }
+    return 0;
+}
+//定义排序函数，冒泡排序
+
+
 int main()
 {
-    int i, num, p, capacity = 4, move = 1, floor, time, u, d;
+    int i, j, num, p, capacity = 4, move = 1, floor, time, u, d;
     //初始化数据
 
     printf("Number Of Passengers =\n");
@@ -40,83 +60,49 @@ int main()
     }
     //上行下行分组，u-1与d-1为数组长度
 
-    int temp
-    int * arrange()
-    {
-        
-    }
+    arrange(up,0);
+    arrange(up,1);
+    arrange(dn,0);
+    arrange(dn,1);
+    //使用排序函数从大到小排序
 
-    for(i = 0; i < (u-1); i++)
-    {
-        for(j = u-1; j > i; j--)
-        {
-            if(up[j][] > up[j-1][])
-            {
-                temp1 = up[j];
-                up[j] =  up[j-1];
-                up[j-1] = temp1;     
-            }
-        }
-    }
-    for(i = 0; i < (d-1); i++)
-    {
-        for(j = d-1; j > i; j--)
-        {
-            if(dn[j] > dn[j-1])
-            {
-                temp2 = dn[j];
-                dn[j] = dn[j-1];
-                dn[j-1] = temp2;
-            } 
-        }
-    }
-    //上行下行冒泡排序，从大到小
-    /*排序调试*/
-
-    //int lengthup = sizeof(up)/sizeof(up[0]);
-    //int lengthdn = sizeof(dn)/sizeof(dn[0]);
-
-    for(i = 0; i < n; i++)
-    {
-        if(/* condition */)
-        {
-            /* code */
-        }
-        
-    }
-    //排序
-//定义删除数组元素函数
+    //定义删除数组元素函数
 
     for(, num > 0,)//当还有乘客时
-    { 
-        for(i = 0, i < (u-1), i++)
+    {
+        for(, floor < 10, floor++)
         {
-            floor++
-            if(up[i][0] == floor || up[i][1] == floor)
+            for(i = 0, i < (u-1), i++)//遍历up数组元素
             {
-                if(p <= 4)//当不超载时
+                if(up[i][0] == floor || up[i][1] == floor)
                 {
-                    if(up[i][0] != floor && up[i][1] == floor)
+                    if(p <= 4)//当不超载时
                     {
-                        p-=1
-                        num-=1
+                        if(up[i][0] != floor && up[i][1] == floor)
+                        {
+                            p-=1
+                            num-=1
+                        }
+                        else if(up[i][0] == floor && up[i][1] != floor)
+                        {
+                            p+=1
+                        }
+                        else
+                        {
+                            num-=1
+                        }
+                        printf("",floor,"",time,"",p,"",num)
                     }
-                    else if(up[i][0] == floor && up[i][1] != floor)
-                    {
-                        p+=1
-                    }
-                    else
-                    {
-                        num-=1
-                    }
-                    printf("",floor,"",time,"",p,"",num)
                 }
                 else
                 {
 
                 }
             }
+                
         }
+    }
+       
         //int lengthup = sizeof(up)/sizeof(up[0]);
        
        for(i = 0, i < lengthdn, i++)
