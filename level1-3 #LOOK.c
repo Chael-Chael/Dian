@@ -70,7 +70,7 @@ int main()
     //初始化数据
 
     printf("Number Of Passengers = ");
-    scanf("%d",&num);
+    scanf("%d", &num);
     int passenger[num][2];
     int up[num][2], dn[num][2];
     //乘客人数
@@ -110,7 +110,6 @@ int main()
         arrangeup(up, 1, u);
         arrangedn(dn, 0, d);
         arrangedn(dn, 1, d);//每次对数组重新arrange
-
         for(; floor++ <= max(up); )//上行至最远
         {   
             time++;
@@ -159,7 +158,7 @@ int main()
             }
             else
             {}
-            printf("%d %d %d %d\n",floor, time, p, num);
+            printf("%d %d %d\n",floor, time, p);
         }
 
         for(; floor-- >= min(dn); )//下行至最远
@@ -217,28 +216,32 @@ int main()
             {
 
             }
-            printf("%d %d %d %d\n",floor, time, p, num);
+            printf("%d %d %d\n",floor, time, p);
         }
 
-        arrangedn(up, 0, u);
-        arrangedn(up, 1, u);
-        arrangedn(dn, 0, d);
-        arrangedn(dn, 1, d);
-        if(min(up) > min(dn))
+        if(num>0)
         {
-            for( ; floor < min(up); floor++)
+            arrangedn(up, 0, u);
+            arrangedn(up, 1, u);
+            arrangedn(dn, 0, d);
+            arrangedn(dn, 1, d);
+            if(min(up) > min(dn))
             {
-                time++;
+                for( ; floor < min(up); floor++)
+                {
+                    time++;
+                }
             }
-        }
-        else
-        {
-            for( ; floor > min(up); floor--)
+            else
             {
-                time++;
+                for( ; floor > min(up); floor--)
+                {
+                    time++;
+                }
             }
+            printf("%d %d %d\n",floor, time, p);
         }
-        printf("%d %d %d %d\n",floor, time, p, num);
+        else{}
         //电梯初始位置回归
     }
 
