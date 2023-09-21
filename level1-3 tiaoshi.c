@@ -1,16 +1,16 @@
 #include <stdio.h>
-int temp,i,j;
-int arrange(int up[][2],int n)
+int temp,i,j,x,y;
+int arrange(int up[][2], int x, int y)
 {
-    for(i = 0; i < 5; i++)
+    for(i = 0; i < y; i++)
     {
-        for(j = 4; j > i; j--)
+        for(j = y-1; j > i; j--)
         {
-            if(up[j][n] > up[j-1][n])
+            if(up[j][x] > up[j-1][x])
             {
-                temp = up[j][n];
-                up[j][n] = up[j-1][n];
-                up[j-1][n] = temp;     
+                temp = up[j][x];
+                up[j][x] = up[j-1][x];
+                up[j-1][x] = temp;     
             }
         }
     }
@@ -34,8 +34,8 @@ int main()
 {
     int up[5][2]={{1,4},{5,6},{7,3},{3,1},{2,0}};
     int b;
-    arrange(up,0);
-    arrange(up,1);
+    arrange(up,0, 5);
+    arrange(up,1, 5);
     for(i=0;i<5;i++)
     {
         printf("Element[%d][0]=%d\n",i,up[i][0]);
