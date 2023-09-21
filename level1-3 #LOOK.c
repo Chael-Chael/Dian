@@ -219,7 +219,7 @@ int main()
             printf("%d %d %d\n",floor, time, p);
         }
 
-        if(num>0)
+        if(num > 0)
         {
             arrangedn(up, 0, u);
             arrangedn(up, 1, u);
