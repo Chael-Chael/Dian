@@ -74,7 +74,7 @@ int min(int up[][2], int y, int x)
 //定义max,min函数
 
 
-//main
+//mainprintf("\n空载补齐");
 int main()
 {
     int i, j;
