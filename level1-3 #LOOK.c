@@ -148,9 +148,9 @@ int main()
         mindn = min(dn, d, 1);
         //每次对数组重新arrange
 
-        printf("\n上行\n");
         if(maxup != 0)//拥有上行需求
         {
+            printf("\n上行\n");
             for(; floor <= maxup; floor++)//上行至最远
             {
                 if(p <= 4 && p >= 0)//不超载时
@@ -202,13 +202,14 @@ int main()
         arrangeup(dn, 0, d);
         maxdn = max(dn, d, 0);
 
-        printf("\n空载补齐");
         if(maxdn != 0)
         {
             if(maxup < maxdn)
             {
                 for(;floor < maxdn; floor++)
                 {
+                    printf("\n空载补齐\n");
+                    printf("%d %d %d %d\n",floor - 1, time + 1, p, num);
                     time++;
                 }
             }
@@ -216,6 +217,8 @@ int main()
             {
                 for(;floor > maxdn; floor--)
                 {
+                    printf("\n空载补齐\n");
+                    printf("%d %d %d %d\n",floor - 1, time + 1, p, num);
                     time++;
                 }
             }
@@ -225,9 +228,9 @@ int main()
         else{}
         //运行补齐
 
-        printf("\n下行\n");
         if(mindn != 0)
         {
+            printf("\n下行\n");
             for(; floor >= mindn; floor--)//下行至最远
             { 
                 if(p <= 4 && p >= 0)//不超载时
@@ -279,13 +282,15 @@ int main()
         arrangedn(up, 0, u);
         minup = min(up, u, 0);
 
-        printf("\n空载补齐");
+
         if(minup !=0 )
         {
             if(minup < mindn)
             {
                 for(;floor > minup; floor--)
                 {
+                    printf("\n空载补齐\n");
+                    printf("%d %d %d %d\n",floor - 1, time + 1, p, num);
                     time++;
                 }
             }
@@ -293,6 +298,8 @@ int main()
             {
                 for(;floor < minup; floor++)
                 {
+                    printf("\n空载补齐\n");
+                    printf("%d %d %d %d\n",floor - 1, time + 1, p, num);
                     time++;
                 }
             }
