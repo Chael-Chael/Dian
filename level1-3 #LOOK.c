@@ -132,6 +132,7 @@ int main()
     }
     //上行下行分组，u与d为数组长度
 
+    printf("floor/time/passenger/passenger to be served\n");
     while(num > 0)//当还有乘客时
     {
         arrangeup(up, 1, u);
