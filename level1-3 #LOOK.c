@@ -51,6 +51,7 @@ int max(int up[][2], int y, int x)
             a = 0;
         }
     } 
+    return a;
 }
 
 int min(int up[][2], int y, int x)
@@ -68,6 +69,7 @@ int min(int up[][2], int y, int x)
             a = 0;
         }
     } 
+    return a;
 }
 //定义max,min函数
 
@@ -75,7 +77,9 @@ int min(int up[][2], int y, int x)
 //main
 int main()
 {
-    int i, j, num = 0, p = 0, capacity = 4, move = 1, floor = 1, time = 0, u = 0, d = 0;
+    int i, j;
+    int num = 0, p = 0, floor = 1, time = 0;
+    int u = 0, d = 0;
     int maxup, maxdn, mindn, minup;
     //初始化数据
 
@@ -108,11 +112,12 @@ int main()
     int up[u][2], dn[d][2];
     //获取上下行个数
 
+    int u0 = 0, d0 = 0;
     for(i = 0; i < num; i++)
     {
+
         if(passenger[i][0] < passenger[i][1])
         {
-            int u0 = 0;
             up[u0][0] = passenger[i][0];
             up[u0][1] = passenger[i][1];
             u0 += 1;
@@ -120,7 +125,6 @@ int main()
         } 
         else
         {
-            int d0 = 0;
             dn[d0][0] = passenger[i][0];
             dn[d0][1] = passenger[i][1];
             d0 += 1;
@@ -130,22 +134,18 @@ int main()
 
     while(num > 0)//当还有乘客时
     {
-        arrangeup(up, 0, u);
         arrangeup(up, 1, u);
-        arrangedn(dn, 0, d);
-        arrangedn(dn, 1, d);
+        arrangeup(dn, 0, d);
 
         maxup = max(up, u, 1);
         maxdn = max(dn, d, 0);
 
-        arrangedn(dn, 0, d);
         arrangedn(dn, 1, d);
-        arrangeup(up, 0, u);
-        arrangeup(up, 1, u);
-        //每次对数组重新arrange
-        minup = min(dn, d, 0);
+        arrangedn(up, 0, u);
+
+        minup = min(up, u, 0);
         mindn = min(dn, d, 1);
-        printf("\n%d %d\n%d %d\n", maxup, maxdn, minup, mindn);
+        //每次对数组重新arrange
 
         printf("\n上行\n");
         if(maxup != 0)//拥有上行需求
@@ -197,25 +197,31 @@ int main()
         else{}
         floor--;
         time--;
-        //printf("%d %d %d %d\n",floor, time, p, num);
 
-        if(maxup < maxdn)
+        arrangeup(dn, 0, d);
+        maxdn = max(dn, d, 0);
+
+        printf("\n空载补齐");
+        if(maxdn != 0)
         {
-            for(;floor < maxdn; floor++)
+            if(maxup < maxdn)
             {
-                time++;
+                for(;floor < maxdn; floor++)
+                {
+                    time++;
+                }
             }
-        }
-        else if (maxup > maxdn)
-        {
-            for(;floor > maxdn; floor--)
+            else if (maxup > maxdn)
             {
-                time++;
+                for(;floor > maxdn; floor--)
+                {
+                    time++;
+                }
             }
+            else
+            {}
         }
-        else
-        {}
-        printf("\n%d %d %d %d\n",floor, time, p, num);
+        else{}
         //运行补齐
 
         printf("\n下行\n");
@@ -268,27 +274,33 @@ int main()
         else{}
         floor++;
         time--;
-        //printf("%d %d %d %d\n",floor, time, p, num);
 
-        if(minup < mindn)
+        arrangedn(up, 0, u);
+        minup = min(up, u, 0);
+
+        printf("\n空载补齐");
+        if(minup !=0 )
         {
-            for(;floor > minup; floor--)
+            if(minup < mindn)
             {
-                time++;
+                for(;floor > minup; floor--)
+                {
+                    time++;
+                }
             }
-        }
-        else if (minup > mindn)
-        {
-            for(;floor < minup; floor++)
+            else if (minup > mindn)
             {
-                time++;
+                for(;floor < minup; floor++)
+                {
+                    time++;
+                }
             }
+            else
+            {}
         }
-        else
-        {}
-        printf("\n%d %d %d %d\n",floor, time, p, num);
+        else{}
+        
     }
-
-    printf("\nProcess Ended\n");
+    printf("\nProcess Ended!\n");
     return 0;
 }
