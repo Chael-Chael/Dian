@@ -2,7 +2,7 @@
 #include <stdlib.h>
 
 
-int getC1(int sp[][3], int num, int p[4][2], double floor, double time)
+int getC1(int sp[][3], int num, int p[4][2], int floor, int time)
 {
   int i, j, a, b, c, d, e, f, C1;
   for(i = 0; i < num; i++)
@@ -46,7 +46,7 @@ int getC1(int sp[][3], int num, int p[4][2], double floor, double time)
   return C1;
 }
 
-int getC2(int sp[][3], int num, int p[4][2], double floor, double time)
+int getC2(int sp[][3], int num, int p[4][2], int floor, int time)
 {
   int i, j, a, b, c, d, e, f, C2;
   for(i = 0; i < num; i++)
@@ -102,6 +102,14 @@ int main()
     scanf("%d", &num);
     int sp[num][3];
     int passenger[4][2];
+
+    for(i = 0; i < 4; i++)
+    {
+        for(j = 0; j < 2; j++)
+        {
+            passenger[i][j] = 0;
+        }
+    }
 
     printf("在下方依次输入起始楼层，结束楼层和间隔时间，以空格间隔\n");
     for(i = 0; i < num; i++)
@@ -171,7 +179,7 @@ int main()
             
             printf("%d %d %d %d\n",(int)floor, (int)time, p, num);
             //计算代价函数，决定下一方向
-            if(getC1(sp, num, passenger, floor, time) > getC2(sp, num, passenger, floor, time))
+            if(getC1(sp, num, passenger, (int)floor, (int)time) > getC2(sp, num, passenger, (int)floor, (int)time))
             {
                 move = 0;
             }
