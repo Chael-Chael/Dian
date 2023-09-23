@@ -2,7 +2,7 @@
 #include <stdlib.h>
 
 
-int getC1(int sp[][3], int num, int p[4][2], int floor, int time)
+int getC1(int sp[][3], int num, int p[4][2], double floor, double time)
 {
   int i, j, a, b, c, d, e, f, C1;
   for(i = 0; i < num; i++)
@@ -46,7 +46,7 @@ int getC1(int sp[][3], int num, int p[4][2], int floor, int time)
   return C1;
 }
 
-int getC2(int sp[][3], int num, int p[4][2], int floor, int time)
+int getC2(int sp[][3], int num, int p[4][2], double floor, double time)
 {
   int i, j, a, b, c, d, e, f, C2;
   for(i = 0; i < num; i++)
@@ -93,8 +93,8 @@ int getC2(int sp[][3], int num, int p[4][2], int floor, int time)
 int main()
 {
     int i = 0, j = 0;
-    int num, p, time = 0, move = 0;
-    double floor, C0, C1, C2;
+    int num, p, move = 0;
+    double floor, C0, C1, C2, time = 0.0;
 
     printf("elevatorfloor = ");
     scanf("%lf", &floor);
@@ -125,6 +125,11 @@ int main()
 
     printf("floor/time/passenger/passenger to be served\n");
     int u = 0, temp = 0;
+
+    for(; time < sp[0][2]; time++)
+    {}
+    //电梯原地等待
+
     while(num > 0)
     {
         if(floor == (int)floor)//到整数层
@@ -187,7 +192,7 @@ int main()
                     {
                         if(p != 4)
                         {
-                            if(getC1(sp, num, passenger, floor, time) > getC2(sp, num, passenger, floor, time))
+                            /*if(getC1(sp, num, passenger, floor, time) > getC2(sp, num, passenger, floor, time))
                             {
                                 move = 0;
                                 temp = 1;
@@ -195,9 +200,12 @@ int main()
                             else
                             {
                                 move = 0;
-                            }
+                            }*/
                         }
-                        else{}
+                        else
+                        {
+                            temp = 1;
+                        }
                     }
                 }   
             }
@@ -211,7 +219,7 @@ int main()
                     {
                         if(p != 4)
                         {
-                            if(getC1(sp, num, passenger, floor, time) > getC2(sp, num, passenger, floor, time))
+                            /*if(getC1(sp, num, passenger, floor, time) > getC2(sp, num, passenger, floor, time))
                             {
                                 move = 0;
                             }
@@ -219,9 +227,12 @@ int main()
                             {
                                 move = 1;
                                 temp = 1;//下一层不停靠
-                            }//代价函数判断
+                            }//代价函数判断*/
                         }
-                        else{}
+                        else
+                        {
+                            temp = 1;
+                        }
                     }
                 }
             }
@@ -229,7 +240,35 @@ int main()
         }
         
         //方向执行器
-        if(floor > 0 && floor <= 10)
+        if(floor == 1.5 && move == 0)
+        {
+            floor = 1;
+            time += 0.5;
+            move = 1;
+
+        }
+        else if(floor == 9.5 && move == 1 )
+        {
+            floor = 10;
+            time += 0.5;
+            move = 0;
+        }
+        else if(floor == 10)
+        {
+            move = 0;
+            floor -= 0.5;
+            time += 0.5;
+
+        }
+        else if(floor == 1)
+        {
+            move = 1;
+            floor += 0.5;
+            time += 0.5;
+        }
+        //终点停靠器
+
+        if(floor > 1 && floor < 10)
         {
             if(temp == 0)
             {
@@ -259,11 +298,7 @@ int main()
             }
             
         }
-        else
-        {
-            printf("Error, Wrong Floor");
-            exit(0);
-        }
+        else{}
         temp = 0;//清空temp
     }
     printf("\nProcess Ended!\n");
