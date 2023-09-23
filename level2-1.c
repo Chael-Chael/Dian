@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-//FCFS + LOOK 作为初学者尽力了
+//尝试动态调度 作为初学者尽力了
 int temp,i,j,x,y;
 int arrangeup(int up[][3], int x, int y)//从大到小
 {
@@ -143,6 +143,41 @@ int main()
     arrangedn(up, u, 3);
     arrangedn(dn, d, 3);//arrange according to time
 
+    int waitdn, waitup, temptimeup, temptimedn, noup, nodn;
+    int floortemp = floor;
+
+    for(;floor-- >= mindn; )
+    {
+        temptimedn++;
+        for(i = 0; i < d, i++)
+        {
+            if(dn[i][0] == floor && temptimedn >= dn[i][3])
+            {
+                waitdn = waitdn + temptimedn - dn[i][3];
+                nodn++;
+            }
+        }
+    }
+
+    for(;floor++ <= maxup; )
+    {
+        temptimeup++;
+        for(i = 0; i < u, i++)
+        {
+            if(up[i][0] == floor && temptimeup >= up[i][3])
+            {
+                waitup = waitup + temptimeup - up[i][3];
+                noup++;
+            }
+        }
+    }
+
+    floor = floortemp;
+    if(float(waitup / noup) > float(waitdn / nodn))
+    {
+        move = 
+    }
+    else if(float(waitup / noup) < float(waitdn / nodn))
     //move = 0, 向下;move = 1, 向上
     
 
