@@ -11,7 +11,7 @@
 # 1 "C:/Program Files/mingw64/x86_64-w64-mingw32/include/_mingw.h" 1 3
 # 10 "C:/Program Files/mingw64/x86_64-w64-mingw32/include/_mingw.h" 3
 # 1 "C:/Program Files/mingw64/x86_64-w64-mingw32/include/_mingw_mac.h" 1 3
-# 98 "C:/Program Files/mingw64/x86_64-w64-mingw32/include/_mingw_mac.h" 3
+# 98 "C:/Program Files/mingw64/x86_64-w64-mSingw32/include/_mingw_mac.h" 3
              
 # 107 "C:/Program Files/mingw64/x86_64-w64-mingw32/include/_mingw_mac.h" 3
              

@@ -4,7 +4,7 @@
 
 int getC1(int sp[][3], int num, int p[4][2], int floor, int time)
 {
-  int i, j, a, b, c, d, e, f, C1;
+  int i, j, a, b, c, d, e, f, C1 = 0;
   for(i = 0; i < num; i++)
   {
     if(sp[i][0] >= floor + 1 && sp[i][2] <= time)
@@ -48,7 +48,7 @@ int getC1(int sp[][3], int num, int p[4][2], int floor, int time)
 
 int getC2(int sp[][3], int num, int p[4][2], int floor, int time)
 {
-  int i, j, a, b, c, d, e, f, C2;
+  int i, j, a, b, c, d, e, f, C2 = 0;
   for(i = 0; i < num; i++)
   {
     if(sp[i][0] >= floor + 1 && sp[i][2] <= time)
@@ -92,16 +92,17 @@ int getC2(int sp[][3], int num, int p[4][2], int floor, int time)
 
 int main()
 {
-    int i = 0, j = 0;
-    int num, p, move = 0;
-    double floor, C0, C1, C2, time = 0.0;
+    int i = 0, j = 0, n = 0;
+    int num = 0, p = 0, move = 0;
+    int floor, time = 0;
 
     printf("elevatorfloor = ");
-    scanf("%lf", &floor);
+    scanf("%d", &floor);
     printf("Number Of Passengers = ");
     scanf("%d", &num);
     int sp[num][3];
     int passenger[4][2];
+    n = num;
 
     for(i = 0; i < 4; i++)
     {
@@ -177,9 +178,12 @@ int main()
             }
 
             
-            printf("%d %d %d %d\n",(int)floor, (int)time, p, num);
+            printf("%d %d %d %d\n",floor, time, p, num);
             //计算代价函数，决定下一方向
-            if(getC1(sp, num, passenger, (int)floor, (int)time) > getC2(sp, num, passenger, (int)floor, (int)time))
+            int x, y;
+            x = getC1(sp, n, passenger, floor, time);
+            y = getC2(sp, n, passenger, floor, time);
+            if(x > y)
             {
                 move = 0;
             }
@@ -187,8 +191,10 @@ int main()
             {
                 move = 1;
             }
+            printf("%d %d", x, y);
         }
-        else//到中间层
+        else{}
+        /*else
         {
             if(move == 0)
             {
@@ -200,7 +206,7 @@ int main()
                     {
                         if(p != 4)
                         {
-                            /*if(getC1(sp, num, passenger, floor, time) > getC2(sp, num, passenger, floor, time))
+                            if(getC1(sp, num, passenger, floor, time) > getC2(sp, num, passenger, floor, time))
                             {
                                 move = 0;
                                 temp = 1;
@@ -208,7 +214,7 @@ int main()
                             else
                             {
                                 move = 0;
-                            }*/
+                            }
                         }
                         else
                         {
@@ -227,7 +233,7 @@ int main()
                     {
                         if(p != 4)
                         {
-                            /*if(getC1(sp, num, passenger, floor, time) > getC2(sp, num, passenger, floor, time))
+                            if(getC1(sp, num, passenger, floor, time) > getC2(sp, num, passenger, floor, time))
                             {
                                 move = 0;
                             }
@@ -235,7 +241,7 @@ int main()
                             {
                                 move = 1;
                                 temp = 1;//下一层不停靠
-                            }//代价函数判断*/
+                            }//代价函数判断
                         }
                         else
                         {
@@ -245,10 +251,10 @@ int main()
                 }
             }
             
-        }
+        }*/
         
         //方向执行器
-        if(floor == 1.5 && move == 0)
+        /*if(floor == 1.5 && move == 0)
         {
             floor = 1;
             time += 0.5;
@@ -261,18 +267,19 @@ int main()
             time += 0.5;
             move = 0;
         }
-        else if(floor == 10)
+        else*/ 
+        if(floor == 10)
         {
             move = 0;
-            floor -= 0.5;
-            time += 0.5;
+            floor -= 1;
+            time += 1;
 
         }
         else if(floor == 1)
         {
             move = 1;
-            floor += 0.5;
-            time += 0.5;
+            floor += 1;
+            time += 1;
         }
         //终点停靠器
 
@@ -282,13 +289,13 @@ int main()
             {
                 if(move == 0)
                 {
-                    floor -= 0.5;
-                    time += 0.5;
+                    floor -= 1;
+                    time += 1;
                 }
                 else
                 {
-                    floor += 0.5;
-                    time += 0.5;
+                    floor += 1;
+                    time += 1;
                 }
             }
             else
